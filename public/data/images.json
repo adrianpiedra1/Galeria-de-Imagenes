@@ -1,0 +1,74 @@
+[
+  {
+    "path": "/images/aprendizaje-digital.jpg",
+    "imageName": "Aprendizaje Digital",
+    "alt": "Estudiantes y herramientas tecnológicas aplicadas al aprendizaje digital en el aula",
+    "tags": ["educación", "tecnología", "digital"]
+  },
+  {
+    "path": "/images/colaboracion-educativa.jpg",
+    "imageName": "Colaboración Educativa",
+    "alt": "Equipo de trabajo colaborando en proyectos educativos y desarrollo conjunto",
+    "tags": ["educación", "colaboración"]
+  },
+  {
+    "path": "/images/diseno-grafico.jpg",
+    "imageName": "Diseño Gráfico",
+    "alt": "Composición visual y herramientas creativas para diseño gráfico digital",
+    "tags": ["diseño", "creatividad", "multimedia"]
+  },
+  {
+    "path": "/images/edicion-video.jpg",
+    "imageName": "Edición de Video",
+    "alt": "Línea de tiempo y estación de trabajo de edición de video profesional",
+    "tags": ["multimedia", "video", "producción"]
+  },
+  {
+    "path": "/images/educacion-inclusiva.jpg",
+    "imageName": "Educación Inclusiva",
+    "alt": "Entorno de aprendizaje accesible e inclusivo para todos los estudiantes",
+    "tags": ["educación", "inclusión"]
+  },
+  {
+    "path": "/images/formacion-docente.jpg",
+    "imageName": "Formación Docente",
+    "alt": "Capacitación y actualización profesional para docentes en nuevas metodologías",
+    "tags": ["educación", "docencia"]
+  },
+  {
+    "path": "/images/ilustracion-educativa.jpg",
+    "imageName": "Ilustración Educativa",
+    "alt": "Recursos visuales e ilustraciones creativas diseñadas para facilitar el aprendizaje",
+    "tags": ["diseño", "educación", "creatividad"]
+  },
+  {
+    "path": "/images/innovacion-tecnologica.jpg",
+    "imageName": "Innovación Tecnológica",
+    "alt": "Desarrollo de soluciones modernas basadas en innovación tecnológica",
+    "tags": ["tecnología", "innovación"]
+  },
+  {
+    "path": "/images/produccion-audiovisual.jpg",
+    "imageName": "Producción Audiovisual",
+    "alt": "Equipo de grabación y producción audiovisual para contenidos educativos y medios",
+    "tags": ["multimedia", "producción", "video"]
+  },
+  {
+    "path": "/images/programacion.jpg",
+    "imageName": "Programación y Desarrollo",
+    "alt": "Pantalla con código fuente y entorno de desarrollo de software",
+    "tags": ["tecnología", "programación", "innovación"]
+  },
+  {
+    "path": "/images/recursos-interactivos.jpg",
+    "imageName": "Recursos Interactivos",
+    "alt": "Plataformas y materiales digitales interactivos para el aprendizaje activo",
+    "tags": ["educación", "digital", "multimedia"]
+  },
+  {
+    "path": "/images/robotica-educativa.jpg",
+    "imageName": "Robótica Educativa",
+    "alt": "Componentes electrónicos y prototipos de robótica educativa en acción",
+    "tags": ["tecnología", "robótica", "educación"]
+  }
+]
