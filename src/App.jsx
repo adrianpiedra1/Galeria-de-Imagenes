@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import ImageGallery from './components/ImageGallery';
 
 function App() {
-  // 1. Estados obligatorios de la consigna
   const [images, setImages] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTag, setSelectedTag] = useState('Todas');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 2. Consumo del JSON local con fetch() al cargar la aplicación
   useEffect(() => {
     fetch('/data/images.json')
       .then((response) => {
@@ -28,10 +28,8 @@ function App() {
       });
   }, []);
 
-  // 3. Extraer etiquetas únicas dinámicamente e incluir "Todas"
   const availableTags = ['Todas', ...new Set(images.flatMap((img) => img.tags))];
 
-  // 4. Filtrar en memoria sin modificar el arreglo original 'images'
   const filteredImages = images.filter((img) => {
     const matchesSearch = img.imageName
       .toLowerCase()
@@ -43,61 +41,66 @@ function App() {
   });
 
   return (
-    <div className="container py-4">
-      <header className="text-center mb-4">
-        <h1 className="fw-bold">Departamento de Gestión y Producción / GESPRO</h1>
-        <p className="text-muted">
-          Explora nuestras funciones filtrando
-        </p>
-      </header>
+    <div className="d-flex flex-column min-vh-100">
+      <Header />
 
-      {/* Barra de búsqueda y filtro por etiquetas */}
-      <div className="row g-3 mb-4 justify-content-center">
-        <div className="col-12 col-md-6">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Buscar por SubArea"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            disabled={loading || Boolean(error)}
-          />
-        </div>
-        <div className="col-12 col-md-4">
-          <select
-            className="form-select"
-            value={selectedTag}
-            onChange={(e) => setSelectedTag(e.target.value)}
-            disabled={loading || Boolean(error)}
-          >
-            {availableTags.map((tag) => (
-              <option key={tag} value={tag}>
-                {tag === 'Todas' ? 'Todas las etiquetas' : `#${tag}`}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {/* Estado de carga */}
-      {loading && (
-        <div className="text-center my-5">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Cargando...</span>
+      <main className="container py-4 flex-grow-1">
+        <div className="card border-0 shadow-sm p-3 mb-4">
+          <div className="row g-3 align-items-center">
+            <div className="col-12 col-md-7">
+              <label htmlFor="searchInput" className="form-label fw-semibold small text-secondary mb-1">
+                Buscar recurso por nombre
+              </label>
+              <input
+                id="searchInput"
+                type="text"
+                className="form-control"
+                placeholder="Ej. Robótica, Programación, Video..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                disabled={loading || Boolean(error)}
+              />
+            </div>
+            <div className="col-12 col-md-5">
+              <label htmlFor="tagSelect" className="form-label fw-semibold small text-secondary mb-1">
+                Filtrar por categoría temática
+              </label>
+              <select
+                id="tagSelect"
+                className="form-select"
+                value={selectedTag}
+                onChange={(e) => setSelectedTag(e.target.value)}
+                disabled={loading || Boolean(error)}
+              >
+                {availableTags.map((tag) => (
+                  <option key={tag} value={tag}>
+                    {tag === 'Todas' ? 'Todas las etiquetas' : `#${tag}`}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <p className="mt-2">Cargando galería...</p>
         </div>
-      )}
 
-      {/* Estado de error */}
-      {error && (
-        <div className="alert alert-danger text-center my-4" role="alert">
-          <strong>Error:</strong> {error}
-        </div>
-      )}
+        {loading && (
+          <div className="text-center my-5">
+            <div className="spinner-border" style={{ color: '#003366' }} role="status">
+              <span className="visually-hidden">Cargando...</span>
+            </div>
+            <p className="mt-2 text-secondary">Cargando recursos educativos...</p>
+          </div>
+        )}
 
-      {/* Galería renderizada cuando termina la carga sin errores */}
-      {!loading && !error && <ImageGallery images={filteredImages} />}
+        {error && (
+          <div className="alert alert-danger text-center my-4" role="alert">
+            <strong>Error:</strong> {error}
+          </div>
+        )}
+
+        {!loading && !error && <ImageGallery images={filteredImages} />}
+      </main>
+
+      <Footer />
     </div>
   );
 }
