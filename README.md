@@ -1,16 +1,37 @@
-# React + Vite
+# Galería de Recursos Educativos Digitales (MEP)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web interactiva desarrollada con **React**, **Vite** y **Bootstrap 5** que presenta una galería de recursos educativos y tecnológicos mediante tarjetas adaptables, consumiendo datos de forma asíncrona desde un archivo JSON local con identidad visual institucional del Ministerio de Educación Pública (MEP) de Costa Rica.
 
-Currently, two official plugins are available:
+## Características principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Identidad visual institucional:** Encabezado (`Header`) y pie de página (`Footer`) con paleta cromática del MEP (`#003366`, `#0066CC`, `#CE1126`) y tipografías **Montserrat** y **Open Sans**.
+- **Consumo asíncrono de datos:** Lectura de `public/data/images.json` mediante `fetch()` nativo dentro de `useEffect`, gestionando estados con `useState`.
+- **Búsqueda y filtrado dinámico:** Filtro en tiempo real por nombre de recurso (insensible a mayúsculas/minúsculas) y selector por etiquetas temáticas (`#educación`, `#tecnología`, `#multimedia`, etc.) con opción `"Todas"`, sin mutar el arreglo original.
+- **Diseño responsivo y manejo de estados:** Cuadrícula adaptativa en Bootstrap 5 para escritorio y móviles, indicador de carga, alerta de error y aviso cuando no existen coincidencias.
 
-## React Compiler
+## Arquitectura de componentes
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **`App.jsx`**: Componente principal que ejecuta la petición `fetch('/data/images.json')`, administra los estados (`images`, `searchTerm`, `selectedTag`, `loading`, `error`), aplica los filtros en memoria y coordina la estructura general.
+- **`Header.jsx`**: Encabezado institucional con título del portal y distintivo gráfico en el extremo derecho.
+- **`ImageGallery.jsx`**: Contenedor responsable de validar si existen resultados filtrados (mostrando una alerta si el arreglo está vacío) y renderizar la cuadrícula de tarjetas mediante `.map()`.
+- **`ImageCard.jsx`**: Tarjeta individual que recibe cada objeto por `props` y muestra la fotografía con su atributo `alt`, el título y sus etiquetas.
+- **`Footer.jsx`**: Pie de página institucional 
 
-## Expanding the ESLint configuration
+## Estructura del proyecto
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+Galeria-de-Imagenes/
+├── public/
+│   ├── data/
+│   │   └── images.json       # logica imagenes
+│   └── images/               # Recursos gráficos locales 
+├── src/
+│   ├── components/
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   ├── ImageCard.jsx
+│   │   └── ImageGallery.jsx
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+└── package.json
